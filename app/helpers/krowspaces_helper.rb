@@ -1,0 +1,2 @@
+module KrowspacesHelper
+end

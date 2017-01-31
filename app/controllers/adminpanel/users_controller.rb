@@ -1,6 +1,6 @@
-class UsersController < ApplicationController
+class Adminpanel::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_only, :except => :show
+  before_action :admin_only
 
   def index
     @users = User.all
@@ -18,16 +18,16 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(secure_params)
-      redirect_to users_path, :notice => "User updated."
+      redirect_to adminpanel_users_path, :notice => "User updated."
     else
-      redirect_to users_path, :alert => "Unable to update user."
+      redirect_to adminpanel_users_path, :alert => "Unable to update user."
     end
   end
 
   def destroy
     user = User.find(params[:id])
     user.destroy
-    redirect_to users_path, :notice => "User deleted."
+    redirect_to adminpanel_users_path, :notice => "User deleted."
   end
 
   private

@@ -10,7 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140828012915) do
+ActiveRecord::Schema.define(version: 20170122223533) do
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer  "seat_id"
+    t.integer  "user_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["seat_id"], name: "index_bookings_on_seat_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "krowspaces", force: :cascade do |t|
+    t.string   "name"
+    t.string   "location"
+    t.integer  "seat_number"
+    t.boolean  "active"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "seats", force: :cascade do |t|
+    t.integer  "krowspace_id"
+    t.integer  "seat_number"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["krowspace_id"], name: "index_seats_on_krowspace_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -27,9 +55,8 @@ ActiveRecord::Schema.define(version: 20140828012915) do
     t.datetime "updated_at"
     t.string   "name"
     t.integer  "role"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
