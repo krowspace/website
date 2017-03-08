@@ -1,9 +1,12 @@
 class Adminpanel::KrowspacesController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_only
-  before_action :set_krowspace , only: [:show, :edit, :update, :destroy]
+  before_action :set_krowspace , only: [:createseats,:show, :edit, :update, :destroy]
   # GET /krowspaces
   # GET /krowspaces.json
+  def createseats
+  end
+
   def index
     @krowspaces = Krowspace.all
   end
@@ -81,7 +84,7 @@ class Adminpanel::KrowspacesController < ApplicationController
   end
 
   def krowspace_params
-    params.require(:krowspace).permit(:name, :location, :seat_number, :active)
+    params.require(:krowspace).permit(:name, :description, :active, :street, :city, :state, :zip, seats_attributes: [:id, :description, :done, :_destroy])
   end
 # Never trust parameters from the scary internet, only allow the white list through.
 end

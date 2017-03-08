@@ -4,11 +4,17 @@ Rails.application.routes.draw do
       get :search
     end
   end
+  resources :bookings do
+    put :confirm
+  end
   root to: 'visitors#index'
   devise_for :users
   namespace :adminpanel do
-    resources :krowspaces
+    resources :krowspaces do
+        post :createseats, :on => :member
+    end
     resources :admins
     resources :users
+
   end
 end

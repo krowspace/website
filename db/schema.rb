@@ -10,26 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170122223533) do
+ActiveRecord::Schema.define(version: 20170212204309) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer  "seat_id"
     t.integer  "user_id"
     t.date     "start_date"
     t.date     "end_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "firstName"
+    t.string   "lastName"
+    t.string   "company"
+    t.string   "streetAddress"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "licenseNumber"
+    t.string   "licenseState"
+    t.string   "paymentType"
+    t.string   "cardName"
+    t.string   "cardNumber"
+    t.string   "expirationDate"
+    t.string   "cvv"
+    t.string   "email"
+    t.string   "cost"
+    t.boolean  "active",         default: false
     t.index ["seat_id"], name: "index_bookings_on_seat_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "krowspaces", force: :cascade do |t|
     t.string   "name"
-    t.string   "location"
+    t.string   "street"
     t.integer  "seat_number"
     t.boolean  "active"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "zip"
+    t.string   "state"
+    t.string   "city"
+    t.text     "description"
   end
 
   create_table "seats", force: :cascade do |t|

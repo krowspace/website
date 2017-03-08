@@ -23,7 +23,7 @@
 			<a href="#" class="btn btn-default">Low</a>
 		</div>
 		<div class="form-group">
-			<label for="date">Location</label>
+			<label for="location">Location</label>
 			<select name="location" class="form-control" id="location">
 				<option value="1">Washington, DC</option>
 			</select>
@@ -75,7 +75,9 @@
 				<p>
 					This is the description of the facility, look at how it's a facility
 				</p>
+        <a class="btn btn-default book" href="/bookings/new?seatid=<%=seat.id%>&start_date=<%=@dates['startDate']%>&end_date=<%=@dates['endDate']%>" role="button">Book</a>
 			</div>
+
 		</div>
 		<%end%>
 		<%= will_paginate @seats %>

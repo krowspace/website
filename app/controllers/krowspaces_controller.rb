@@ -12,15 +12,18 @@ class KrowspacesController < ApplicationController
 
   def search
     @seats = Seat.paginate(:page => params[:page],:per_page => 5).where.not(id: Booking.select("seat_id").
-    where('(start_date <= ? AND end_date >= ?) or (start_date <= ? AND end_date >= ?)',
-    krowspace_params[:startDate], krowspace_params[:endDate], krowspace_params[:startDate], krowspace_params[:endDate])) 
+        where('(start_date <= ? AND end_date >= ?) or (start_date >= ? AND end_date <= ?)',
+              Date.strptime(krowspace_params[:startDate], "%m/%d/%Y"), Date.strptime(krowspace_params[:endDate], "%m/%d/%Y"),
+              Date.strptime(krowspace_params[:startDate], "%m/%d/%Y"), Date.strptime(krowspace_params[:endDate], "%m/%d/%Y")))
+    @dates = {"startDate" => krowspace_params[:startDate], "endDate" => krowspace_params[:endDate]}
   end
   private
 
   # Use callbacks to share common setup or constraints between actions.
 
-  def krowspace_params
 
+
+  def krowspace_params
     params.permit(:location, :startDate, :endDate)
   end
 # Never trust parameters from the scary internet, only allow the white list through.

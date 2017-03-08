@@ -2,15 +2,16 @@
 <p>
   <strong>Name:</strong>
   <%= @krowspace.name %>
+  <table>
+  <% @krowspace.seats.each do |seat| %>
+      <tr>
+        <td><%= seat.seat_number %></td>
+      </tr>
+  <% end %>
+  </table>
 </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @krowspace.location %>
-</p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @krowspace.seat_number %>
-</p>
+
+
 <%= link_to 'Back', adminpanel_krowspaces_path %>

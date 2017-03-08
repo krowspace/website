@@ -15,7 +15,17 @@
  *= require_self
  *= require bootstrap-datetimepicker
  */
+.form-horizontal .control-label{
+  /* text-align:right; */
+  text-align:left;
+}
+label {
+  font-weight: normal !important;
+}
 
+.book{
+  float: right;
+}
 .top5 { margin-top:5px; }
 .top7 { margin-top:7px; }
 .top10 { margin-top:10px; }

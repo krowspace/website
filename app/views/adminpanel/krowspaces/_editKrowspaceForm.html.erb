@@ -1,4 +1,4 @@
-<%= form_for krowspace, :url => adminpanel_krowspace_path(krowspace)  do |f| %>
+<%= form_for krowspace, :url => adminpanel_krowspace_path(krowspace) do |f| %>
 <% if krowspace.errors.any? %>
 <div id="error_explanation">
 	<h2><%= pluralize(krowspace.errors.count, "error") %> prohibited this post from being saved:</h2>
