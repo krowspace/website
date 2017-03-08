@@ -1,0 +1,87 @@
+<div class="row">
+	<div class="col-md-3">
+		<h1>Filter</h1>
+		<%= form_tag("/krowspaces/search", method: "get") do %>
+
+		<div class="form-group">
+			<label for="date">Dates</label>
+			<div class='input-group date' id='startDate'>
+				<input type='text' name="startDate" class="form-control" />
+				<span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"> </span> </span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class='input-group date' id='endDate'>
+				<input type='text' name="endDate" class="form-control" />
+				<span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"> </span> </span>
+			</div>
+		</div>
+
+		<div class="btn-group form-group ">
+			<label for="date">Price</label>
+			<a href="#" class="btn btn-primary">Hi</a>
+			<a href="#" class="btn btn-default">Low</a>
+		</div>
+		<div class="form-group">
+			<label for="location">Location</label>
+			<select name="location" class="form-control" id="location">
+				<option value="1">Washington, DC</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-default">
+				Update
+			</button>
+		</div>
+		<% end %>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			$('#startDate').datetimepicker({
+				format : 'MM/DD/YYYY',
+				daysOfWeekDisabled : [0, 6],
+				useCurrent : false,
+				minDate : moment()
+			});
+			$('#endDate').datetimepicker({
+				format : 'MM/DD/YYYY',
+				daysOfWeekDisabled : [0, 6],
+				useCurrent : false,
+				minDate : moment()
+			});
+
+			$("#startDate").on("dp.change", function(e) {
+				$('#endDate').data("DateTimePicker").minDate(e.date);
+			});
+			$("#endDate").on("dp.change", function(e) {
+				$('#startDate').data("DateTimePicker").maxDate(e.date);
+			});
+		});
+	</script>
+
+	<div class="col-md-9">
+		<div class="cold-md-2 btn-group form-group ">
+			<label for="date">Price</label>
+			<a href="#" class="btn btn-primary">Map View</a>
+			<a href="#" class="btn btn-default">List View</a>
+		</div>
+		<% @seats.each do |seat| %>
+		<div class="row top10">
+			<div class="col-md-4">
+				<img src="http://placehold.it/400x300"/>
+			</div>
+			<div class="col-md-4">
+				<h1><%= seat.id %></h1>
+				<p>
+					This is the description of the facility, look at how it's a facility
+				</p>
+        <a class="btn btn-default book" href="/bookings/new?seatid=<%=seat.id%>&start_date=<%=@dates['startDate']%>&end_date=<%=@dates['endDate']%>" role="button">Book</a>
+			</div>
+
+		</div>
+		<%end%>
+		<%= will_paginate @seats %>
+	</div>
+
+</div>
+

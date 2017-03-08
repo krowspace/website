@@ -1,0 +1,12 @@
+<%= form_for krowspace, :url => createseats_adminpanel_krowspace_path(krowspace), :method => :post  do |f| %>
+    <h3>Seats</h3>
+    <div id='tasks'>
+      <%= f.fields_for :seats do |seat| %>
+          <%= render 'seat_fields', :f => seat %>
+      <% end %>
+      <div class='links'>
+        <%= link_to_add_association 'add task', f, :seats %>
+      </div>
+    </div>
+        <%= f.submit 'Save' %>
+<% end %>
