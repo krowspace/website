@@ -1,0 +1,101 @@
+<h1> Book a Space</h1>
+<%= form_tag("/bookings/#{@booking.id}/confirm", method: "put", class: "form-horizontal") do %>
+    <div class="form-group">
+      <label class="control-label col-sm-1" for="email">Email:</label>
+      <div class="col-sm-2">
+        <input type='text' name="email" class="form-control" placeholder="Email Address" value="<%= @booking.email %>" readonly/>
+      </div>
+    </div>
+    <div class="row">
+      <h3>Booking Details</h3>
+      <div class="col-lg-1">
+      </div>
+      <div class="col-lg-3">
+        <img src="http://placehold.it/200x150"/>
+      </div>
+      <div class="col-lg-6">
+        <div class="col-lg-3">
+          Space Name
+        </div>
+        <div class="col-lg-3">
+          Facility Name
+        </div>
+        <div class="col-lg-12 top7">
+          123 this street, theLongestNamed, mn, 22222
+        </div>
+        <div class="col-lg-4">
+          <label class="control-label col-sm-1" for="email">From:</label>
+          <input class="form-control" name="start_date" id="disabledInput" type="datetime" placeholder="Disabled" value="<%= @booking.start_date.strftime("%D") %>" readonly >
+        </div>
+        <div class="col-lg-4">
+          <label class="control-label col-sm-1" for="email">To:</label>
+          <input class="form-control" name="end_date" id="disabledInput" type="datetime" placeholder="Disabled" value="<%= @booking.end_date.strftime("%D") %>" readonly>
+        </div>
+      </div>
+    </div>
+
+    <div class="row top15">
+      <div class="form-group">
+        <label class="control-label col-lg-1" for="email">First Name:</label>
+        <div class="col-sm-2">
+          <input type='text' name="firstName" class="form-control" value="<%= @booking.firstName %>" readonly/>
+        </div>
+        <label class="control-label col-sm-1" for="email">Last Name:</label>
+        <div class="col-sm-2">
+          <input type='text' name="lastName" class="form-control" value="<%= @booking.lastName %>" readonly/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-1" for="email">Address:</label>
+        <div class="col-sm-3">
+          <input type='text' name="streetAddress" class="form-control" value="<%= @booking.streetAddress %>" readonly/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-lg-1" for="email">City, State, & Zip:</label>
+        <div class="col-sm-2">
+          <input type='text' name="city" class="form-control" value="<%= @booking.city %>" readonly/>
+        </div>
+        <div class="col-sm-1">
+          <input type='text' name="state" class="form-control" value="<%= @booking.state %>" readonly maxlength="2"/>
+        </div>
+        <div class="col-sm-2">
+          <input type='text' name="zip" class="form-control" value="<%= @booking.zip %>" readonly/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-1">Payment Type:</label>
+        <div class="col-sm-2">
+          <select name="paymentType" class="form-control" id="paymentType"  disabled>
+            <option value="<%= @booking.paymentType %>" > <%= @booking.paymentType %></option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-1" for="email">Name On Card:</label>
+        <div class="col-sm-2">
+          <input type='text' name="cardName" class="form-control" value="<%= @booking.cardName %>" readonly/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-1" for="email">Credit Card:</label>
+        <div class="col-sm-2">
+          <input type='text' name="cardNumber" class="form-control" value="<%= @booking.cardNumber %>" readonly/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-1" for="email">Expiration Date:</label>
+        <div class="col-sm-2">
+          <input type='text' name="expirationDate" class="form-control" value="<%= @booking.expirationDate %>" readonly/>
+        </div>
+        <label class="control-label col-sm-1" for="email">CVV:</label>
+        <div class="col-sm-1">
+          <input type='text' name="cvv" class="form-control" value="<%= @booking.cvv %>" readonly/>
+        </div>
+      </div>
+    </div>
+    <button type="confirm" class="btn btn-default">
+      Continue
+    </button>
+<% end %>

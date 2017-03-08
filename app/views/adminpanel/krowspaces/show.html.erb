@@ -1,0 +1,17 @@
+<%= link_to 'Edit', edit_adminpanel_krowspace_path(@krowspace) %> 
+<p>
+  <strong>Name:</strong>
+  <%= @krowspace.name %>
+  <table>
+  <% @krowspace.seats.each do |seat| %>
+      <tr>
+        <td><%= seat.seat_number %></td>
+      </tr>
+  <% end %>
+  </table>
+</p>
+
+
+
+
+<%= link_to 'Back', adminpanel_krowspaces_path %>
