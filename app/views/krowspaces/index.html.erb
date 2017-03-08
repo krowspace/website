@@ -1,0 +1,45 @@
+<div>
+	<%= form_tag("/krowspaces/search", class: "form-inline", method: "get") do %>
+
+	<div class="form-group">
+		<select name="location" class="form-control" id="location">
+			<option value="1">Washington, DC</option>
+		</select>
+		<div class='input-group date' id='startDate'>
+			<input type='text' name="startDate" class="form-control" />
+			<span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"> </span> </span>
+		</div>
+		<div class='input-group date' id='endDate'>
+			<input type='text' name="endDate" class="form-control" />
+			<span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"> </span> </span>
+		</div>
+		<button type="submit" class="btn btn-default">
+			Search
+		</button>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			$('#startDate').datetimepicker({
+				format : 'MM/DD/YYYY',
+				daysOfWeekDisabled : [0, 6],
+				useCurrent : false,
+				minDate : moment()
+			});
+			$('#endDate').datetimepicker({
+				format : 'MM/DD/YYYY',
+				daysOfWeekDisabled : [0, 6],
+				useCurrent : false,
+				minDate : moment()
+			});
+
+			$("#startDate").on("dp.change", function(e) {
+				$('#endDate').data("DateTimePicker").minDate(e.date);
+			});
+			$("#endDate").on("dp.change", function(e) {
+				$('#startDate').data("DateTimePicker").maxDate(e.date);
+			});
+		});
+	</script>
+
+	<% end %>
+</div>

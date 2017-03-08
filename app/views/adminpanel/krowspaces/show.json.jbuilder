@@ -1,0 +1,1 @@
+json.partial! "krowspaces/krowspace", krowspace: @krowspace
