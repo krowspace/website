@@ -18,13 +18,13 @@ development:
 test:
     adapter: postgresql
     encoding: unicode
-    DATABASE_URL: "postgres://cnvdyrfzhhxlbz:465e513e290cf7281f9f9e116ac7e9f0c8f0c362445683548eb0938e7332e746@ec2-174-129-41-23.compute-1.amazonaws.com/d25emqd9u9fj3f"
+    database_url: "postgres://cnvdyrfzhhxlbz:465e513e290cf7281f9f9e116ac7e9f0c8f0c362445683548eb0938e7332e746@ec2-174-129-41-23.compute-1.amazonaws.com:5432/d25emqd9u9fj3f"
     pool: 5
-    port: 5432
+    password: "465e513e290cf7281f9f9e116ac7e9f0c8f0c362445683548eb0938e7332e746"
 
 production:
     adapter: postgresql
     encoding: unicode
-    DATABASE_URL: "postgres://cnvdyrfzhhxlbz:465e513e290cf7281f9f9e116ac7e9f0c8f0c362445683548eb0938e7332e746@ec2-174-129-41-23.compute-1.amazonaws.com/d25emqd9u9fj3f"
+    database_url: "postgres://cnvdyrfzhhxlbz:465e513e290cf7281f9f9e116ac7e9f0c8f0c362445683548eb0938e7332e746@ec2-174-129-41-23.compute-1.amazonaws.com:5432/d25emqd9u9fj3f"
     pool: 5
-    port: 5432
+    password: "465e513e290cf7281f9f9e116ac7e9f0c8f0c362445683548eb0938e7332e746"
