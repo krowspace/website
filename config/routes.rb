@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     put :confirm
   end
   root to: 'krowspaces#index'
-  resources :users do
+  resources :users ,only: [] do
     collection do
       get :bookings
     end
