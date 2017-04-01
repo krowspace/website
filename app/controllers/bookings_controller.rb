@@ -1,5 +1,4 @@
 class BookingsController < ApplicationController
-  require 'Date'
 
   def new
     @booking = Booking.new
