@@ -30,7 +30,7 @@ class BookingsController < ApplicationController
   def confirm
     logger.debug confirm_booking_id
     @booking = Booking.update(confirm_booking_id['booking_id'], :active => true)
-    redirect_to search_krowspaces_path
+    redirect_to krowspaces_path
   end
   private
 

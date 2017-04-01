@@ -31,12 +31,6 @@ class Adminpanel::KrowspacesController < ApplicationController
     @krowspace = Krowspace.new(krowspace_params)
     respond_to do |format|
       if @krowspace.save
-        @krowspace.seat_number.times do |i|
-          s = Seat.new
-          s.seat_number = i
-          s.krowspace_id = @krowspace.id
-          s.save
-        end
         format.html { redirect_to adminpanel_krowspace_path(@krowspace), notice: 'Krowspace was successfully created.' }
         format.json { render :show, status: :created, location: @krowspace }
       else

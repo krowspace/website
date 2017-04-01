@@ -58,13 +58,14 @@
 			});
 		});
 	</script>
-
 	<div class="col-md-9">
 		<div class="cold-md-2 btn-group form-group ">
 			<label for="date">Price</label>
-			<a href="#" class="btn btn-primary">Map View</a>
-			<a href="#" class="btn btn-default">List View</a>
+			<div id="map-view" class="btn btn-default">Map View</div>
+			<div id="list-view" class="btn btn-primary">List View</div>
 		</div>
+    <div id="map" class="map"></div>
+    <div id="list" class="active">
 		<% @seats.each do |seat| %>
 		<div class="row top10">
 			<div class="col-md-4">
@@ -75,12 +76,47 @@
 				<p>
 					This is the description of the facility, look at how it's a facility
 				</p>
-        <a class="btn btn-default book" href="/bookings/new?seatid=<%=seat.id%>&start_date=<%=@dates['startDate']%>&end_date=<%=@dates['endDate']%>" role="button">Book</a>
+        <a class="btn btn-default book" href="/bookings/new?seat_id=<%=seat.id%>&start_date=<%=@dates['startDate']%>&end_date=<%=@dates['endDate']%>" role="button">Book</a>
 			</div>
-
 		</div>
 		<%end%>
 		<%= will_paginate @seats %>
+    </div>
+    <script>
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10
+            });
+        };
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp_rASu-jTbcEgq4QNpDw6gU52Ryl9eMc&callback=initMap">
+    </script>
+    <script>
+        var mapView = document.getElementById('map-view');
+        var listView = document.getElementById('list-view');
+        var list = document.getElementById('list');
+        var googleMap = document.getElementById('map');
+        mapView.addEventListener('click', function(){
+            this.classList.remove('btn-default');
+            this.classList.add('btn-primary');
+            googleMap.classList.add('active');
+            listView.classList.remove('btn-primary');
+            listView.classList.add('btn-default');
+            list.classList.remove('active');
+            map.setCenter({lng: -77.009003, lat: 38.889931})
+        })
+        listView.addEventListener('click', function(){
+            this.classList.remove('btn-default');
+            this.classList.add('btn-primary');
+            list.classList.add('active');
+            mapView.classList.remove('btn-primary');
+            mapView.classList.add('btn-default');
+            googleMap.classList.remove('active');
+        })
+
+    </script>
 	</div>
 
 </div>
