@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-require 'Date'
+  
   def new
     @booking = Booking.new
     @seat = Seat.find(booking_params[:seat_id])
