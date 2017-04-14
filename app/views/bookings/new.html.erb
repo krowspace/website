@@ -1,8 +1,8 @@
 <h1> Book a Space</h1>
-<% debug @seat %>
+
 <%= form_tag("/bookings", method: "post", class: "form-horizontal") do %>
 
-    <input type="hidden" name="seat_id" value="<%= @seat %>"/>
+    <input type="hidden" name="seat_id" value="<%= @seat.id %>"/>
     <div class="form-group">
       <label class="control-label col-sm-1" for="email">Email:</label>
       <div class="col-sm-2">
@@ -18,13 +18,13 @@
       </div>
       <div class="col-lg-6">
         <div class="col-lg-3">
-          Space Name
+          <%= @seat.id %>
         </div>
         <div class="col-lg-3">
-          Facility Name
+          <%= @seat.krowspace.name %>
         </div>
         <div class="col-lg-12 top7">
-          123 this street, theLongestNamed, mn, 22222
+          <%= @seat.krowspace.street + ", " + @seat.krowspace.city + ", " + @seat.krowspace.state %>
         </div>
         <div class="col-lg-4">
           <label class="control-label col-sm-1" for="email">From:</label>

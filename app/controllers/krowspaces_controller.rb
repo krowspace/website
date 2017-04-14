@@ -16,6 +16,12 @@ class KrowspacesController < ApplicationController
               Date.strptime(krowspace_params[:startDate], "%m/%d/%Y"), Date.strptime(krowspace_params[:endDate], "%m/%d/%Y"),
               Date.strptime(krowspace_params[:startDate], "%m/%d/%Y"), Date.strptime(krowspace_params[:endDate], "%m/%d/%Y")))
     @dates = {"startDate" => krowspace_params[:startDate], "endDate" => krowspace_params[:endDate]}
+    @krowspaces = Krowspace.joins(:seats).where.not(id: Booking.select("seat_id").
+        where('(start_date <= ? AND end_date >= ?) or (start_date >= ? AND end_date <= ?)',
+              Date.strptime(krowspace_params[:startDate], "%m/%d/%Y"), Date.strptime(krowspace_params[:endDate], "%m/%d/%Y"),
+              Date.strptime(krowspace_params[:startDate], "%m/%d/%Y"), Date.strptime(krowspace_params[:endDate], "%m/%d/%Y")))
+    logger.debug @krowspaces.inspect
+
   end
   private
 

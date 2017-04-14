@@ -39,7 +39,7 @@ class Adminpanel::SeatsController < ApplicationController
   end
 
   def seat_params
-    params.require(:seat).permit(:seat_number)
+    params.require(:seat).permit(:seat_number, :description, :amenities, :price)
   end
 # Never trust parameters from the scary internet, only allow the white list through.
 end

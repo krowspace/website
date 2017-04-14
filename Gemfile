@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 ruby '2.2.5'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'sqlite3', :group => :development
-gem "pg"
+gem 'pg', :group => :production
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -15,7 +15,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 gem 'will_paginate', '~> 3.1.0'
 gem 'bootstrap-will_paginate'
 gem "cocoon"
-
+gem "json"
   gem 'byebug', platform: :mri
 
 

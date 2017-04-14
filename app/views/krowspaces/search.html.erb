@@ -60,22 +60,25 @@
 	</script>
 	<div class="col-md-9">
 		<div class="cold-md-2 btn-group form-group ">
-			<label for="date">Price</label>
 			<div id="map-view" class="btn btn-default">Map View</div>
 			<div id="list-view" class="btn btn-primary">List View</div>
 		</div>
     <div id="map" class="map"></div>
     <div id="list" class="active">
+
 		<% @seats.each do |seat| %>
 		<div class="row top10">
 			<div class="col-md-4">
 				<img src="http://placehold.it/400x300"/>
 			</div>
 			<div class="col-md-4">
-				<h1><%= seat.id %></h1>
+				<h1>$<%= seat.price %> per day</h1>
 				<p>
-					This is the description of the facility, look at how it's a facility
+          <%= seat.description %>
 				</p>
+        <p class="amenities">
+          <%= seat.amenities %>
+        </p>
         <a class="btn btn-default book" href="/bookings/new?seat_id=<%=seat.id%>&start_date=<%=@dates['startDate']%>&end_date=<%=@dates['endDate']%>" role="button">Book</a>
 			</div>
 		</div>
@@ -88,7 +91,16 @@
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 10
             });
+
+            <% @krowspaces.each do |krowspace| %>
+            new google.maps.Marker({
+                position: new google.maps.LatLng(<%=krowspace.lat %>,<%=krowspace.lng%>),
+                title:"<%=krowspace.name%>"
+            }).setMap(map);
+            <%end%>
         };
+
+
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp_rASu-jTbcEgq4QNpDw6gU52Ryl9eMc&callback=initMap">
@@ -115,6 +127,7 @@
             mapView.classList.add('btn-default');
             googleMap.classList.remove('active');
         })
+
 
     </script>
 	</div>

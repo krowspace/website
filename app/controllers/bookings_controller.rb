@@ -1,10 +1,13 @@
 class BookingsController < ApplicationController
-
+require 'Date'
   def new
     @booking = Booking.new
-    @seat = booking_params[:seat_id]
+    @seat = Seat.find(booking_params[:seat_id])
     @from = booking_params[:start_date]
     @to = booking_params[:end_date]
+
+    @days =  (weekdays_in_date_range(Date.strptime(booking_params[:start_date], "%m/%d/%Y")..Date.strptime(booking_params[:end_date], "%m/%d/%Y"))).to_f
+    logger.debug @days
   end
 
   # GET /krowspaces/1
@@ -31,8 +34,8 @@ class BookingsController < ApplicationController
     @booking = Booking.update(confirm_booking_id['booking_id'], :active => true)
     redirect_to krowspaces_path
   end
-  private
 
+  private
   # Use callbacks to share common setup or constraints between actions.
   def confirm_booking_id
     params.permit(:id, :booking_id)
@@ -40,6 +43,11 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.permit(:id,:firstName, :lastName, :company, :streetAddress, :city, :state, :zip, :licenseNumber, :licenseState, :paymentType, :cardName, :cardNumber, :expirationDate, :cvv, :email, :cost, :start_date, :end_date, :seat_id)
+  end
+
+  def weekdays_in_date_range(range)
+    # You could modify the select block to also check for holidays
+    range.select { |d| (1..5).include?(d.wday) }.size
   end
 # Never trust parameters from the scary internet, only allow the white list through.
 end
