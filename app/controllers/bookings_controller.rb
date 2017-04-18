@@ -1,13 +1,11 @@
 class BookingsController < ApplicationController
-  
+
   def new
     @booking = Booking.new
     @seat = Seat.find(booking_params[:seat_id])
     @from = booking_params[:start_date]
     @to = booking_params[:end_date]
-
     @days =  (weekdays_in_date_range(Date.strptime(booking_params[:start_date], "%m/%d/%Y")..Date.strptime(booking_params[:end_date], "%m/%d/%Y"))).to_f
-    logger.debug @days
   end
 
   # GET /krowspaces/1

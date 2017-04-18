@@ -20,7 +20,6 @@ class KrowspacesController < ApplicationController
         where('(start_date <= ? AND end_date >= ?) or (start_date >= ? AND end_date <= ?)',
               Date.strptime(krowspace_params[:startDate], "%m/%d/%Y"), Date.strptime(krowspace_params[:endDate], "%m/%d/%Y"),
               Date.strptime(krowspace_params[:startDate], "%m/%d/%Y"), Date.strptime(krowspace_params[:endDate], "%m/%d/%Y")))
-    logger.debug @krowspaces.inspect
 
   end
   private
