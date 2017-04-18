@@ -29,14 +29,13 @@ class Adminpanel::KrowspacesController < ApplicationController
   # POST /krowspaces.json
   def create
     @krowspace = Krowspace.new(krowspace_params)
+    baseURL = "http://maps.google.com/maps/api/geocode/json?address=#{@krowspace.street},#{@krowspace.city},#{@krowspace.state}"
+    @result = JSON.parse(URI.parse(baseURL).read)
+    @result['results'][0]['geometry']['location']['lat']
+    @krowspace.lng = @result['results'][0]['geometry']['location']['lng']
+    @krowspace.lat = @result['results'][0]['geometry']['location']['lat']
     respond_to do |format|
       if @krowspace.save
-        @krowspace.seat_number.times do |i|
-          s = Seat.new
-          s.seat_number = i
-          s.krowspace_id = @krowspace.id
-          s.save
-        end
         format.html { redirect_to adminpanel_krowspace_path(@krowspace), notice: 'Krowspace was successfully created.' }
         format.json { render :show, status: :created, location: @krowspace }
       else

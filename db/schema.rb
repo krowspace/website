@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170212204309) do
+ActiveRecord::Schema.define(version: 20170413012147) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer  "seat_id"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 20170212204309) do
     t.string   "state"
     t.string   "city"
     t.text     "description"
+    t.string   "lat"
+    t.string   "lng"
   end
 
   create_table "seats", force: :cascade do |t|
@@ -58,6 +60,9 @@ ActiveRecord::Schema.define(version: 20170212204309) do
     t.integer  "seat_number"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.text     "description"
+    t.text     "amenities"
+    t.string   "price"
     t.index ["krowspace_id"], name: "index_seats_on_krowspace_id"
   end
 

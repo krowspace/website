@@ -15,6 +15,25 @@
  *= require_self
  *= require bootstrap-datetimepicker
  */
+.pagination {
+  display: block !important;
+}
+#map {
+  opacity: 0;
+  height: 450px;
+}
+#list {
+  opacity: 0;
+  margin-top: -460px;
+}
+.active {
+  opacity: 1 !important;
+}
+.search {
+  justify-content: center;
+  display: flex;
+  margin-top: 25px;
+}
 .form-horizontal .control-label{
   /* text-align:right; */
   text-align:left;

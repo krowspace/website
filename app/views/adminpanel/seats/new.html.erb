@@ -1,0 +1,44 @@
+<h1>New Seat</h1>
+
+<%= form_for @seat, :url => adminpanel_krowspace_seats_path(@seat.krowspace_id) do |f| %>
+    <% if @seat.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@seat.errors.count, "error") %> prohibited this post from being saved:</h2>
+          <ul>
+            <% @seat.errors.full_messages.each do |message| %>
+                <li>
+                  <%= message %>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :seat_number %>
+      <%= f.text_field :seat_number %>
+    </div>
+
+    <div class="field">
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+    </div>
+
+    <div class="field">
+      <%= f.label :amenities %>
+      <%= f.text_field :amenities %>
+    </div>
+
+    <div class="field">
+      <%= f.label :price %>
+      <%= f.text_field :price %>
+    </div>
+
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
+
+
+<%= link_to 'Back', adminpanel_krowspace_seats_path %>
